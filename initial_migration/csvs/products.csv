@@ -1,0 +1,101 @@
+product_id,product_name,category,price,stock_quantity,supplier_id
+PROD001,Incredible Granite Shirt,Clothing,123.03,740,SUP07
+PROD002,Bacon,Industrial,43.24,304,SUP01
+PROD003,Soap,Home,417.2,842,SUP05
+PROD004,Wooden Ball,Electronics,59.04,217,SUP17
+PROD005,Licensed Frozen Ball,Electronics,450.37,246,SUP16
+PROD006,Rustic Mouse,Electronics,267.79,188,SUP20
+PROD007,Pizza,Shoes,169.92,665,SUP16
+PROD008,Fresh Shoes,Music,482.8,218,SUP14
+PROD009,Frozen Bacon,Outdoors,401.58,633,SUP13
+PROD010,Incredible Soap,Garden,71.24,19,SUP17
+PROD011,Unbranded Pants,Baby,443.74,499,SUP02
+PROD012,Small Tuna,Automotive,43.52,113,SUP02
+PROD013,Metal Pizza,Health,167.25,647,SUP16
+PROD014,Licensed Frozen Chicken,Industrial,114.66,796,SUP01
+PROD015,Fresh Bacon,Music,321.67,213,SUP15
+PROD016,Concrete Salad,Health,46.35,478,SUP11
+PROD017,Gently Used Cheese,Automotive,458.38,639,SUP13
+PROD018,Refined Chicken,Home,156.29,696,SUP09
+PROD019,Soft Chips,Industrial,118.8,269,SUP19
+PROD020,Shirt,Automotive,448.55,403,SUP02
+PROD021,Incredible Soft Cheese,Grocery,433.77,392,SUP17
+PROD022,Fresh Sausages,Clothing,481.81,809,SUP09
+PROD023,Fantastic Chicken,Home,277.36,729,SUP05
+PROD024,Handcrafted Plastic Chicken,Grocery,391.3,707,SUP02
+PROD025,Metal Cheese,Home,181.77,725,SUP03
+PROD026,Small Towels,Movies,242.52,20,SUP12
+PROD027,Mouse,Health,88.44,401,SUP15
+PROD028,Fish,Home,203.53,624,SUP11
+PROD029,Cotton Shoes,Games,82.75,262,SUP10
+PROD030,Mouse,Toys,163.62,385,SUP08
+PROD031,Gently Used Soft Chair,Books,385.76,318,SUP17
+PROD032,Pizza,Outdoors,287.79,831,SUP13
+PROD033,Used Soft Keyboard,Grocery,380.45,114,SUP13
+PROD034,Sausages,Books,320.56,934,SUP10
+PROD035,Fantastic Plastic Chicken,Books,124.37,283,SUP03
+PROD036,Frozen Pizza,Automotive,477.2,188,SUP05
+PROD037,Table,Outdoors,210.7,485,SUP17
+PROD038,Gorgeous Cotton Computer,Industrial,326.06,926,SUP16
+PROD039,Gently Used Car,Computers,259.9,569,SUP18
+PROD040,Cheese,Computers,65.91,889,SUP06
+PROD041,Used Metal Bike,Clothing,110.36,760,SUP20
+PROD042,Refined Gloves,Shoes,56.25,638,SUP07
+PROD043,Unbranded Shoes,Games,360.14,984,SUP12
+PROD044,New Mouse,Industrial,125.65,923,SUP01
+PROD045,Granite Towels,Grocery,421.53,686,SUP01
+PROD046,Chips,Home,34.62,93,SUP16
+PROD047,Soft Chips,Baby,23.46,631,SUP13
+PROD048,Fantastic Granite Salad,Health,49.74,760,SUP08
+PROD049,Frozen Tuna,Games,242.51,20,SUP14
+PROD050,Gorgeous Keyboard,Industrial,91.87,737,SUP04
+PROD051,Pizza,Sports,354.39,84,SUP14
+PROD052,Concrete Tuna,Home,103.29,29,SUP15
+PROD053,Fantastic Gloves,Health,191.82,445,SUP15
+PROD054,Salad,Automotive,182.6,309,SUP14
+PROD055,Fresh Chips,Books,200.57,571,SUP06
+PROD056,Awesome Keyboard,Music,417.31,232,SUP12
+PROD057,Sleek Soft Towels,Computers,62.03,464,SUP12
+PROD058,Fish,Tools,215.54,75,SUP20
+PROD059,Unbranded Ball,Kids,483.43,408,SUP16
+PROD060,Ergonomic Shirt,Jewelery,82.19,942,SUP01
+PROD061,Chicken,Electronics,45.5,829,SUP10
+PROD062,New Sausages,Beauty,324.49,34,SUP07
+PROD063,For repair Wooden Chips,Industrial,316.18,923,SUP02
+PROD064,Steel Bike,Computers,219.75,135,SUP11
+PROD065,Unbranded Tuna,Computers,297.87,75,SUP10
+PROD066,For repair Fresh Shoes,Shoes,101.19,592,SUP19
+PROD067,Concrete Ball,Books,384.09,855,SUP01
+PROD068,Gently Used Steel Shirt,Grocery,157.17,478,SUP13
+PROD069,Intelligent Salad,Beauty,323.24,786,SUP08
+PROD070,For repair Cotton Mouse,Books,42.88,70,SUP16
+PROD071,Fresh Pizza,Computers,313.02,870,SUP10
+PROD072,Wooden Soap,Toys,201.56,940,SUP08
+PROD073,Handcrafted Soft Pants,Books,378.49,189,SUP14
+PROD074,New Car,Movies,422.19,328,SUP13
+PROD075,Fresh Table,Movies,305.87,40,SUP12
+PROD076,Generic Concrete Car,Music,144.05,58,SUP01
+PROD077,Soap,Music,190.18,519,SUP08
+PROD078,Practical Wooden Sausages,Industrial,229.82,582,SUP17
+PROD079,Tasty Granite Pants,Outdoors,454.59,285,SUP15
+PROD080,Small Granite Ball,Tools,179.43,561,SUP17
+PROD081,Rustic Chair,Garden,121.96,756,SUP06
+PROD082,Shirt,Beauty,330.03,851,SUP05
+PROD083,Practical Shirt,Jewelery,427.14,546,SUP11
+PROD084,Cotton Chicken,Beauty,157.85,762,SUP11
+PROD085,Unbranded Shirt,Baby,491.53,152,SUP10
+PROD086,Unbranded Soap,Outdoors,226.3,196,SUP19
+PROD087,Sleek Fish,Electronics,170.28,773,SUP06
+PROD088,Cheese,Toys,397.9,536,SUP03
+PROD089,Hat,Movies,46.83,976,SUP11
+PROD090,Gently Used Wooden Sausages,Kids,431.74,746,SUP14
+PROD091,Unbranded Shirt,Music,51.76,674,SUP18
+PROD092,Steel Pizza,Baby,109.73,481,SUP11
+PROD093,Gently Used Concrete Computer,Toys,344.91,921,SUP03
+PROD094,Incredible Mouse,Garden,220.66,612,SUP03
+PROD095,Generic Rubber Cheese,Music,131.67,19,SUP01
+PROD096,Keyboard,Outdoors,22.89,930,SUP09
+PROD097,Practical Pizza,Home,296.11,17,SUP08
+PROD098,Small Fresh Ball,Computers,364.51,383,SUP06
+PROD099,Fresh Table,Toys,493.7,241,SUP08
+PROD100,Awesome Chips,Movies,207.53,698,SUP15

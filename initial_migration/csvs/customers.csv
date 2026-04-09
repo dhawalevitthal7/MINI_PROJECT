@@ -1,0 +1,101 @@
+customer_id,customer_name,email,city,country,loyalty_points
+CUST001,Jessica Cooper,veronicameyer@example.com,Robertshaven,Zimbabwe,2597
+CUST002,Rodney Singleton,daviddelgado@example.com,New Susan,North Macedonia,4261
+CUST003,Jessica Adkins DVM,heatherstewart@example.org,Craigmouth,Albania,4077
+CUST004,Jessica Rivera,patricia81@example.org,West Nancyborough,Ireland,2532
+CUST005,Sharon Mullins,allison53@example.net,South Caroline,Peru,3923
+CUST006,Melissa Rogers,mhenson@example.org,New Meganland,Jersey,1682
+CUST007,Joshua Gonzalez,gonzalezlouis@example.net,Powellton,Singapore,6
+CUST008,Jennifer Mays,wwilliams@example.org,Nicholashaven,Ukraine,425
+CUST009,Tamara Thompson,otaylor@example.net,North Steven,Burundi,2452
+CUST010,Nicole Brown,michelecruz@example.org,Port Austin,Colombia,4005
+CUST011,Lori Robertson,ryanmorse@example.org,Angelatown,China,1086
+CUST012,Alyssa Fox,jody67@example.com,Port Andrewmouth,Honduras,2943
+CUST013,Raymond Lopez,moodyjoseph@example.com,South Michelleville,Georgia,2925
+CUST014,Christopher Bass,santosamy@example.com,Morganberg,South Georgia and the South Sandwich Islands,448
+CUST015,Kevin Williamson,sporter@example.org,Lake Kyle,British Indian Ocean Territory (Chagos Archipelago),3997
+CUST016,Thomas Roberts,christopher60@example.com,New Edwardport,Mauritius,3416
+CUST017,Ashley Webb,abarnes@example.net,Melissaview,Georgia,3175
+CUST018,Ashley White,asmith@example.org,Carrhaven,Saint Barthelemy,4709
+CUST019,Jeffrey Marks,michelle15@example.org,South Andrewtown,Saint Martin,1581
+CUST020,Michelle Guzman,jeffrey84@example.org,East Connie,Indonesia,2000
+CUST021,Leroy Gibson,lhobbs@example.net,Littlehaven,Australia,3249
+CUST022,Robert Martin,nicoleowens@example.net,East Brittanychester,Northern Mariana Islands,1030
+CUST023,Bobby Perez,webbamanda@example.net,East Matthew,Bahamas,3410
+CUST024,Michael Spencer DDS,aaronjohnson@example.com,Port Paultown,Ireland,2722
+CUST025,Alice Walters,cassidyjones@example.com,Millertown,Saint Martin,2471
+CUST026,Brandon Harrison,pshaw@example.org,Brendaview,Bahamas,560
+CUST027,Mrs. Elizabeth Lopez,fwood@example.org,Christopherhaven,Turks and Caicos Islands,2688
+CUST028,April Nicholson,swoods@example.org,Annland,Holy See (Vatican City State),3197
+CUST029,Leslie Baker,maria10@example.net,Nielsenshire,British Virgin Islands,148
+CUST030,Eric Evans,smithashley@example.org,Justinmouth,Guernsey,2879
+CUST031,Walter Lee,omar27@example.net,Hardingport,Cyprus,3005
+CUST032,Brandon Bradley,parkerloretta@example.net,North Samantha,Saint Helena,1552
+CUST033,Katie Chapman,sara75@example.net,Jeffreybury,Tunisia,2219
+CUST034,Mr. John Allen,riveradavid@example.com,Wardchester,Saint Helena,4476
+CUST035,Justin Jones,banksannette@example.org,Shellymouth,Cambodia,562
+CUST036,Amber Murphy,xwebster@example.net,Lake Jeffery,Mayotte,1551
+CUST037,Danny Reeves,jessicaphillips@example.net,Sosabury,Cameroon,2188
+CUST038,Ronnie Robertson,pkennedy@example.com,Port Annachester,United States of America,1078
+CUST039,Brandon Harvey,brian40@example.net,South Jennifer,Sweden,4013
+CUST040,Ashley Pierce,mariamoore@example.net,New Samuel,Serbia,1527
+CUST041,Joseph Johnson,ryanclayton@example.org,Barrerahaven,Serbia,3759
+CUST042,Robert Harrison,kerrkaren@example.net,Johnchester,Vietnam,4301
+CUST043,Rachel Kline,burnsjacqueline@example.net,South Thomas,Pakistan,4684
+CUST044,Heather Williams,owalker@example.org,East Judy,Timor-Leste,365
+CUST045,Melissa Valenzuela,thomasangela@example.com,North Spencerhaven,Hong Kong,3950
+CUST046,Erica Harrington,shannonspencer@example.org,Lake Whitneymouth,Israel,1480
+CUST047,Isaac Liu,millskevin@example.com,East Lindsaystad,Guinea-Bissau,1686
+CUST048,Alexander Hudson,gabriellemcdowell@example.org,North Brianfurt,Greece,2410
+CUST049,Leah Sanchez,woodsmary@example.net,Newmanton,Dominican Republic,4393
+CUST050,Mrs. Sharon Robinson MD,iweber@example.org,Wilsonborough,Dominica,444
+CUST051,Lisa Peters,smithbarry@example.net,Sierraburgh,Bulgaria,3534
+CUST052,Carmen Jackson,richardjackson@example.com,West Katie,Chile,1679
+CUST053,Nicholas Barrera,hdavidson@example.org,South Scottport,Bhutan,1295
+CUST054,Megan Perkins,sandy88@example.net,North Reginaville,Switzerland,4618
+CUST055,Julie Pierce,michaeldominguez@example.com,Jamesside,Bangladesh,4959
+CUST056,Lynn Rodriguez,sstewart@example.com,Port Deannaburgh,North Macedonia,1666
+CUST057,Stephen Edwards,heather62@example.net,Aliceside,Azerbaijan,2021
+CUST058,Maureen Bentley,dnelson@example.com,Andersonmouth,Germany,1894
+CUST059,Joshua Baker,emily75@example.net,South Troyborough,Lithuania,1246
+CUST060,Rebecca Taylor,jwatson@example.com,North Charles,Niger,1619
+CUST061,Sharon Ramos,kristinfoley@example.net,Kristenville,Peru,3669
+CUST062,Michael Phillips,katelynmcneil@example.org,Allisontown,Peru,4258
+CUST063,Manuel Spencer,frobinson@example.com,Garrettborough,Nepal,706
+CUST064,Anna Cabrera,lrhodes@example.org,Lake Ruth,Singapore,4906
+CUST065,Andrea Jones,marioatkinson@example.com,Lake Roymouth,Netherlands Antilles,2667
+CUST066,Kristine Newman,omorales@example.org,Annaborough,Burkina Faso,2476
+CUST067,Lauren Austin,brittany15@example.net,Meganstad,Solomon Islands,2204
+CUST068,Steven Walker,brownwalter@example.net,Butlerborough,Timor-Leste,2688
+CUST069,Lisa Snyder,trevorgutierrez@example.net,East Sara,Guyana,423
+CUST070,Matthew Roach,benjaminjenkins@example.com,South Nancy,Andorra,2247
+CUST071,Cameron Mayo,stephenrowe@example.net,New Joshua,Fiji,4196
+CUST072,Jamie Reynolds,oreynolds@example.com,Garystad,India,4684
+CUST073,Dennis Potts,zmontgomery@example.net,Juareztown,Mauritania,3079
+CUST074,Anna Grant,richard87@example.com,Matthewhaven,Saint Helena,4049
+CUST075,Mark Harris,danielle46@example.net,Richardmouth,Slovakia (Slovak Republic),1505
+CUST076,Michael Carroll,mbutler@example.com,Robinsonton,Armenia,1197
+CUST077,Angela Hughes,kelly95@example.net,New Stevenside,Hong Kong,1931
+CUST078,Natalie Fitzgerald,mmartinez@example.com,South Matthew,Venezuela,3699
+CUST079,Jennifer Flowers,lisaheath@example.com,West Ericville,Philippines,504
+CUST080,Sandra Miller DDS,fowlerjohnathan@example.com,Danafort,Swaziland,3500
+CUST081,James Wall,rodriguezcarlos@example.net,Gilbertmouth,Benin,2140
+CUST082,Donna Perez,destinytran@example.net,Nelsonfurt,Puerto Rico,4484
+CUST083,Gregory Price,agriffin@example.org,New Gabriel,Cape Verde,48
+CUST084,Hayden Stewart,mckinneyjillian@example.com,Port Brad,Mexico,1045
+CUST085,Derrick Haynes,robert66@example.org,Bradleyville,Guatemala,993
+CUST086,Bryan Long,matthewstevenson@example.com,East Juan,Honduras,4121
+CUST087,Mark Becker,iellis@example.org,Frostmouth,Uganda,1725
+CUST088,Nicole Edwards,amandajohnson@example.org,Stacyport,Vanuatu,4042
+CUST089,Omar Davis,dnguyen@example.net,Samanthaborough,New Zealand,2370
+CUST090,Diane Berger,samanthacrawford@example.net,Kristaville,Cyprus,936
+CUST091,Andrea Washington,rrobbins@example.com,South Christopherstad,Somalia,2567
+CUST092,Robert Rodriguez,heatherperez@example.net,Valentinehaven,France,2225
+CUST093,Gregory Coleman,stephen45@example.net,New Lawrenceborough,United States Virgin Islands,4201
+CUST094,Mike Francis,djacobson@example.net,Ryanburgh,Faroe Islands,4744
+CUST095,Alexandra Romero,hcallahan@example.net,East Tiffany,Lao People's Democratic Republic,4709
+CUST096,Jeremy Parker,troy24@example.net,Donmouth,Albania,1576
+CUST097,Ebony Newman DDS,gomezkevin@example.net,Henryland,Kuwait,4804
+CUST098,Samantha Young,cdaniel@example.net,Avilaside,Saint Barthelemy,3253
+CUST099,Carl Smith,bonnie80@example.com,East Chelsey,French Guiana,678
+CUST100,Felicia Stevens,jocelyn06@example.com,Bullockton,Liberia,2098

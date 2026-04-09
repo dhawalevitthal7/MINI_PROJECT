@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="QueryVista — AI-Powered Database Migration Platform. Migrate data between MySQL, PostgreSQL, MongoDB, and CouchDB with AI-generated schema mapping." />
+  <title>QueryVista — AI Database Migration Platform</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚀</text></svg>" />
+</head>
+<body>
+
+  <!-- Animated background mesh -->
+  <div class="bg-mesh"></div>
+
+  <!-- Loading Overlay -->
+  <div id="loadingOverlay" class="loading-overlay">
+    <div class="spinner spinner-lg"></div>
+    <div class="loading-text" id="loadingText">Processing...</div>
+    <div class="loading-subtext" id="loadingSubtext">This may take a moment</div>
+  </div>
+
+  <div class="app-container">
+
+    <!-- ── Header ─────────────────────────────────────────────────────── -->
+    <header class="nav-header">
+      <div class="logo">
+        <div class="logo-icon">🚀</div>
+        <span class="logo-text">QueryVista</span>
+        <span class="logo-badge">AI Powered</span>
+      </div>
+      <div class="nav-status">
+        <div class="status-dot"></div>
+        <span>System Online</span>
+      </div>
+    </header>
+
+    <!-- ── Hero ───────────────────────────────────────────────────────── -->
+    <section class="hero" id="heroSection">
+      <h1>
+        Migrate Any Database<br />
+        <span class="gradient-text">With AI Precision</span>
+      </h1>
+      <p>
+        Seamlessly transfer data between SQL and NoSQL databases.
+        AI drafts the schema mapping — you approve and execute.
+      </p>
+    </section>
+
+    <!-- ── Stepper ────────────────────────────────────────────────────── -->
+    <div class="stepper" id="stepper">
+      <div class="step-item">
+        <div class="step-circle active" data-step="1" id="stepCircle1">1</div>
+        <span class="step-label active" id="stepLabel1">Select DBs</span>
+      </div>
+      <div class="step-connector" id="connector1"></div>
+      <div class="step-item">
+        <div class="step-circle" data-step="2" id="stepCircle2">2</div>
+        <span class="step-label" id="stepLabel2">Connect</span>
+      </div>
+      <div class="step-connector" id="connector2"></div>
+      <div class="step-item">
+        <div class="step-circle" data-step="3" id="stepCircle3">3</div>
+        <span class="step-label" id="stepLabel3">Schema</span>
+      </div>
+      <div class="step-connector" id="connector3"></div>
+      <div class="step-item">
+        <div class="step-circle" data-step="4" id="stepCircle4">4</div>
+        <span class="step-label" id="stepLabel4">AI Plan</span>
+      </div>
+      <div class="step-connector" id="connector4"></div>
+      <div class="step-item">
+        <div class="step-circle" data-step="5" id="stepCircle5">5</div>
+        <span class="step-label" id="stepLabel5">Migrate</span>
+      </div>
+    </div>
+
+    <!-- ════════════════════════════════════════════════════════════════ -->
+    <!-- STEP 1: Select Source & Target Databases                       -->
+    <!-- ════════════════════════════════════════════════════════════════ -->
+    <div class="step-panel active" id="step1Panel">
+      <div class="two-col">
+        <!-- Source -->
+        <div class="card">
+          <div class="card-header">
+            <div class="card-icon">📤</div>
+            <div>
+              <div class="card-title">Source Database</div>
+              <div class="card-subtitle">Where your data lives now</div>
+            </div>
+          </div>
+          <div class="db-selector-grid" id="sourceDbGrid">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+
+        <!-- Target -->
+        <div class="card">
+          <div class="card-header">
+            <div class="card-icon">📥</div>
+            <div>
+              <div class="card-title">Target Database</div>
+              <div class="card-subtitle">Where you want to migrate</div>
+            </div>
+          </div>
+          <div class="db-selector-grid" id="targetDbGrid">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Pipeline Confirmation -->
+      <div id="pipelineConfirm" style="display:none;">
+        <div class="flow-arrow">
+          <div class="flow-arrow-inner">
+            <span id="pipelineSourceName">—</span>
+            <span>→</span>
+            <span id="pipelineTargetName">—</span>
+          </div>
+        </div>
+        <div class="btn-group" style="justify-content:center;">
+          <button class="btn btn-primary" id="btnConfirmPipeline" onclick="goToStep(2)">
+            <span class="btn-icon">⚡</span>
+            Continue to Connection
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ════════════════════════════════════════════════════════════════ -->
+    <!-- STEP 2: Connection Configuration                               -->
+    <!-- ════════════════════════════════════════════════════════════════ -->
+    <div class="step-panel" id="step2Panel">
+      <div class="section-title">🔌 Database Connection</div>
+      <div class="section-desc">Enter credentials for your source and target databases. We'll test each connection before proceeding.</div>
+
+      <div class="connection-forms">
+        <!-- Source Config -->
+        <div class="card" id="sourceConfigCard">
+          <div class="card-header">
+            <div class="card-icon" id="sourceConfigIcon">📤</div>
+            <div>
+              <div class="card-title" id="sourceConfigTitle">Source</div>
+              <div class="card-subtitle">Enter source connection details</div>
+            </div>
+          </div>
+          <div id="sourceConfigFields">
+            <!-- Populated by JS -->
+          </div>
+          <button class="btn btn-secondary" id="btnTestSource" onclick="testConnection('source')">
+            <span class="btn-icon">🔍</span>Test Connection
+          </button>
+          <div id="sourceTestResult"></div>
+        </div>
+
+        <!-- Target Config -->
+        <div class="card" id="targetConfigCard">
+          <div class="card-header">
+            <div class="card-icon" id="targetConfigIcon">📥</div>
+            <div>
+              <div class="card-title" id="targetConfigTitle">Target</div>
+              <div class="card-subtitle">Enter target connection details</div>
+            </div>
+          </div>
+          <div id="targetConfigFields">
+            <!-- Populated by JS -->
+          </div>
+          <button class="btn btn-secondary" id="btnTestTarget" onclick="testConnection('target')">
+            <span class="btn-icon">🔍</span>Test Connection
+          </button>
+          <div id="targetTestResult"></div>
+        </div>
+      </div>
+
+      <div class="btn-group" style="justify-content:center;">
+        <button class="btn btn-secondary" onclick="goToStep(1)">
+          <span class="btn-icon">←</span>Back
+        </button>
+        <button class="btn btn-primary" id="btnExtractSchema" onclick="extractSchema()">
+          <span class="btn-icon">📊</span>Extract Schema & Continue
+        </button>
+      </div>
+    </div>
+
+    <!-- ════════════════════════════════════════════════════════════════ -->
+    <!-- STEP 3: Schema Review                                          -->
+    <!-- ════════════════════════════════════════════════════════════════ -->
+    <div class="step-panel" id="step3Panel">
+      <div class="section-title">📊 Source Schema</div>
+      <div class="section-desc">Review the extracted schema from your source database. This metadata will be sent to AI for migration planning.</div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon">🗂️</div>
+          <div>
+            <div class="card-title">Extracted Schema</div>
+            <div class="card-subtitle" id="schemaStats">—</div>
+          </div>
+        </div>
+        <div class="schema-display" id="schemaDisplay">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+
+      <div class="btn-group" style="justify-content:center;">
+        <button class="btn btn-secondary" onclick="goToStep(2)">
+          <span class="btn-icon">←</span>Back
+        </button>
+        <button class="btn btn-primary" id="btnGeneratePlan" onclick="generatePlan()">
+          <span class="btn-icon">🤖</span>Generate AI Migration Plan
+        </button>
+      </div>
+    </div>
+
+    <!-- ════════════════════════════════════════════════════════════════ -->
+    <!-- STEP 4: AI Plan Review (HITL)                                  -->
+    <!-- ════════════════════════════════════════════════════════════════ -->
+    <div class="step-panel" id="step4Panel">
+      <div class="section-title">🤖 AI Migration Plan</div>
+      <div class="section-desc">Review the AI-generated migration blueprint. You can provide feedback to refine it, or approve to proceed.</div>
+
+      <div class="card">
+        <div class="plan-editor">
+          <div class="plan-editor-toolbar">
+            <div class="plan-editor-title">
+              <span>📋</span> migration_blueprint.json
+            </div>
+            <span class="status-badge running" id="planStatus">AI Generated</span>
+          </div>
+          <div class="plan-editor-content" id="planContent">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+
+        <!-- HITL Feedback -->
+        <div class="feedback-box">
+          <h4>💬 Human-in-the-Loop Feedback</h4>
+          <div class="form-group">
+            <label class="form-label" for="feedbackInput">Send feedback to AI to refine the plan</label>
+            <textarea class="form-input" id="feedbackInput" placeholder="E.g., 'Embed orders inside customers instead of having a separate collection' or 'Rename target collection to user_profiles'"></textarea>
+          </div>
+          <button class="btn btn-secondary" onclick="updatePlan()">
+            <span class="btn-icon">🔄</span>Update Plan with Feedback
+          </button>
+        </div>
+      </div>
+
+      <div class="btn-group" style="justify-content:center;">
+        <button class="btn btn-secondary" onclick="goToStep(3)">
+          <span class="btn-icon">←</span>Back
+        </button>
+        <button class="btn btn-success" id="btnApprovePlan" onclick="approvePlan()">
+          <span class="btn-icon">✅</span>Approve Plan & Execute Migration
+        </button>
+      </div>
+    </div>
+
+    <!-- ════════════════════════════════════════════════════════════════ -->
+    <!-- STEP 5: Migration Execution & Results                          -->
+    <!-- ════════════════════════════════════════════════════════════════ -->
+    <div class="step-panel" id="step5Panel">
+      <div class="section-title">🚀 Migration Execution</div>
+      <div class="section-desc" id="migrationStatusText">Executing your approved migration plan...</div>
+
+      <!-- Progress -->
+      <div class="card" id="progressCard">
+        <div class="progress-container">
+          <div class="progress-header">
+            <span class="progress-title">Migration Progress</span>
+            <span class="progress-percentage" id="progressPercent">0%</span>
+          </div>
+          <div class="progress-bar-track">
+            <div class="progress-bar-fill" id="progressFill" style="width: 0%"></div>
+          </div>
+          <div class="progress-details">
+            <span id="progressTable">Waiting...</span>
+            <span id="progressCount">0 / 0 tables</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Results -->
+      <div id="migrationResults" style="display:none;">
+        <div class="result-card">
+          <div class="result-icon" id="resultIcon">✅</div>
+          <h2 id="resultTitle">Migration Complete!</h2>
+          <p id="resultMessage" style="color:var(--text-secondary);margin-top:8px;">All data has been successfully migrated.</p>
+
+          <div class="result-stats">
+            <div class="stat-card">
+              <div class="stat-value" id="statTables">0</div>
+              <div class="stat-label">Tables Migrated</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-value" id="statRows">0</div>
+              <div class="stat-label">Total Rows</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-value" id="statErrors">0</div>
+              <div class="stat-label">Errors</div>
+            </div>
+          </div>
+
+          <!-- Detailed Results Table -->
+          <table class="migration-table" id="migrationTable" style="margin-top:24px;">
+            <thead>
+              <tr>
+                <th>Source</th>
+                <th>Target</th>
+                <th>Rows</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="migrationTableBody">
+              <!-- Populated by JS -->
+            </tbody>
+          </table>
+        </div>
+
+        <div class="btn-group" style="justify-content:center;margin-top:32px;">
+          <button class="btn btn-primary" onclick="startOver()">
+            <span class="btn-icon">🔄</span>Start New Migration
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Footer ─────────────────────────────────────────────────────── -->
+    <footer class="footer">
+      <p>QueryVista — AI-Powered Database Migration Platform · Built with ❤️</p>
+    </footer>
+
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
