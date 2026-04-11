@@ -1,0 +1,19 @@
+ 1. MySQL (via phpMyAdmin)
+Since you set up the phpmyadmin container alongside MySQL, you have a full visual interface ready to go.
+
+URL to browse: 
+Username: root
+Password: root123 (Or you can log in as user1 with password pass123 to access the testdb directly).
+🛋️ 2. CouchDB (via Fauxton UI)
+CouchDB has a sleek, built-in, web-based control panel called Fauxton that lets you view all your document databases, design queries, and check indexes.
+
+URL to browse: http://localhost:5984/_utils/
+Username: admin
+Password: admin123
+🔌 QueryVista / SQLAI Connection Strings
+If you are testing your QueryVista migration pipeline running at http://localhost:8000, and you need the exact connection strings to plug into the UI to connect these local docker containers, use these:
+
+MySQL Source Connection URL:
+mysql+pymysql://root:root123@localhost:3310/testdb
+CouchDB Target Connection URL:
+http://admin:admin123@localhost:5984/

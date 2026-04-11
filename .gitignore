@@ -1,6 +1,7 @@
 # Environments
 .env
 .env.*
+!.env.example
 venv/
 env/
 .venv/
@@ -22,4 +23,7 @@ build/
 .vscode/
 .idea/
 .DS_Store
+Thumbs.db
+__MACOSX/
+**/._*
 *.log

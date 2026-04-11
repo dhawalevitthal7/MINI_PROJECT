@@ -64,19 +64,32 @@ class MySQLToMongoPipeline(BasePipeline):
                     columns = list(rows.keys())
                     data = rows.fetchall()
 
+                field_maps = mapping.get("field_mappings", [])
+                src_to_tgt = {}
+                for fm in field_maps:
+                    s_field = fm.get("source_field") or fm.get("source") or fm.get("source_column")
+                    t_field = fm.get("target_field") or fm.get("target") or fm.get("target_column")
+                    if s_field and t_field:
+                        src_to_tgt[s_field] = t_field
+
                 # Transform rows
                 documents = []
                 for row in data:
                     doc = {}
                     for col_name, value in zip(columns, row):
+                        # If field mappings exist but this column isn't mapped, skip it!
+                        if field_maps and col_name not in src_to_tgt:
+                            continue
+
+                        final_col = src_to_tgt.get(col_name, col_name)
                         if isinstance(value, (datetime.datetime, datetime.date)):
-                            doc[col_name] = value.isoformat()
+                            doc[final_col] = value.isoformat()
                         elif isinstance(value, decimal.Decimal):
-                            doc[col_name] = float(value)
+                            doc[final_col] = float(value)
                         elif isinstance(value, bytes):
-                            doc[col_name] = value.decode("utf-8", errors="replace")
+                            doc[final_col] = value.decode("utf-8", errors="replace")
                         else:
-                            doc[col_name] = value
+                            doc[final_col] = value
                     documents.append(doc)
 
                 # Insert into MongoDB

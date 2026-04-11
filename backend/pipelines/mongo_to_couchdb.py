@@ -41,25 +41,40 @@ class MongoToCouchDBPipeline(BasePipeline):
     def extract_schema(self, config: Dict[str, Any]) -> Dict[str, Any]:
         return extract_mongo_schema(config["connection_url"], config["database"])
 
-    def _transform_doc(self, doc: dict, collection_name: str) -> dict:
-        """Transform a MongoDB document for CouchDB."""
+    def _transform_doc(self, doc: dict, collection_name: str, field_maps: list, src_to_tgt: dict) -> dict:
+        """Transform a MongoDB document for CouchDB mapping rules."""
         new_doc = {"doc_type": collection_name}
+        
         for k, v in doc.items():
+            # If field maps exist and key is explicitly not mapped (and isn't the primary _id if we wanted to omit it), skip it
+            if field_maps and k not in src_to_tgt:
+                # Always at least allow _id to map to mongo_id if not strictly overriding it, OR skip if strictly omitted
+                if k != "_id":
+                    continue
+
+            final_k = src_to_tgt.get(k, k)
+
             if k == "_id":
-                new_doc["mongo_id"] = str(v)
+                # If _id wasn't mapped at all, we fall back to mongo_id if we didn't continue above.
+                mapped_id_key = final_k if final_k != "_id" else "mongo_id"
+                # If they explicitly omitted it, we skip
+                if field_maps and k not in src_to_tgt:
+                    continue
+                new_doc[mapped_id_key] = str(v)
                 continue
+                
             if isinstance(v, ObjectId):
-                new_doc[k] = str(v)
+                new_doc[final_k] = str(v)
             elif isinstance(v, (datetime.datetime, datetime.date)):
-                new_doc[k] = v.isoformat()
+                new_doc[final_k] = v.isoformat()
             elif isinstance(v, bytes):
-                new_doc[k] = v.decode("utf-8", errors="replace")
+                new_doc[final_k] = v.decode("utf-8", errors="replace")
             elif isinstance(v, dict):
-                new_doc[k] = json.loads(json.dumps(v, default=safe_json))
+                new_doc[final_k] = json.loads(json.dumps(v, default=safe_json))
             elif isinstance(v, (list, set)):
-                new_doc[k] = json.loads(json.dumps(list(v), default=safe_json))
+                new_doc[final_k] = json.loads(json.dumps(list(v), default=safe_json))
             else:
-                new_doc[k] = v
+                new_doc[final_k] = v
         return new_doc
 
     def execute(
@@ -81,13 +96,21 @@ class MongoToCouchDBPipeline(BasePipeline):
             source_coll = mapping["source"]
             target_db_name = mapping["target"].lower().replace(" ", "_")
 
+            field_maps = mapping.get("field_mappings", [])
+            src_to_tgt = {}
+            for fm in field_maps:
+                s_field = fm.get("source_field") or fm.get("source") or fm.get("source_column")
+                t_field = fm.get("target_field") or fm.get("target") or fm.get("target_column")
+                if s_field and t_field:
+                    src_to_tgt[s_field] = t_field
+
             try:
                 # Create CouchDB database
                 httpx.put(f"{host}/{target_db_name}", auth=auth, timeout=30)
 
                 # Read and transform documents
                 docs = list(mongo_db[source_coll].find())
-                couch_docs = [self._transform_doc(doc, source_coll) for doc in docs]
+                couch_docs = [self._transform_doc(doc, source_coll, field_maps, src_to_tgt) for doc in docs]
 
                 # Bulk insert in batches
                 if couch_docs:

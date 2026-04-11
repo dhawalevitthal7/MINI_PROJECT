@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="QueryVista — AI-Powered Database Migration & Dual-DB Intelligence Platform. Migrate first, then explore with AI across PostgreSQL, MySQL, MongoDB, and CouchDB.">
+  <title>QueryVista — AI Migration & Dual-DB Platform</title>
+  <link rel="stylesheet" href="/static/styles.css">
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+</head>
+
+<body>
+  <div class="app-layout">
+
+    <!-- ===== SIDEBAR ===== -->
+    <aside class="sidebar" id="sidebar" role="navigation" aria-label="Main navigation">
+      <div class="sidebar-brand">
+        <div class="brand-icon" aria-hidden="true">⚡</div>
+        <div class="brand-text">
+          <h1>QueryVista</h1>
+          <span>Migrate & Explore</span>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <div class="nav-section-label">Pipeline</div>
+        <a class="nav-item active" data-page="migration" role="button" tabindex="0" id="nav-migration">
+          <span class="nav-icon" aria-hidden="true">🚀</span>
+          <span class="nav-label">Migration</span>
+        </a>
+        <div class="nav-section-label">Exploration</div>
+        <a class="nav-item" data-page="connect" role="button" tabindex="0" id="nav-connect">
+          <span class="nav-icon" aria-hidden="true">🔌</span>
+          <span class="nav-label">Connect DBs</span>
+        </a>
+        <a class="nav-item" data-page="schema" role="button" tabindex="0" id="nav-schema">
+          <span class="nav-icon" aria-hidden="true">📊</span>
+          <span class="nav-label">Schema Explorer</span>
+        </a>
+        <a class="nav-item" data-page="query" role="button" tabindex="0" id="nav-query">
+          <span class="nav-icon" aria-hidden="true">🤖</span>
+          <span class="nav-label">AI Query</span>
+        </a>
+        <div class="nav-section-label">Analytics</div>
+        <a class="nav-item" data-page="dashboard" role="button" tabindex="0" id="nav-dashboard">
+          <span class="nav-icon" aria-hidden="true">📈</span>
+          <span class="nav-label">Dashboard</span>
+        </a>
+        <a class="nav-item" data-page="optimizer" role="button" tabindex="0" id="nav-optimizer">
+          <span class="nav-icon" aria-hidden="true">⚙️</span>
+          <span class="nav-label">Optimizer</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle sidebar">
+          <span id="toggleIcon">◀</span>
+          <span class="nav-label">Collapse</span>
+        </button>
+      </div>
+    </aside>
+
+    <div class="mobile-overlay" id="mobileOverlay"></div>
+
+    <!-- ===== MAIN CONTENT ===== -->
+    <main class="main-content">
+
+      <!-- Header -->
+      <header class="header">
+        <div class="header-left">
+          <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Open menu">☰</button>
+          <h2 class="header-title" id="headerTitle">Data Migration</h2>
+        </div>
+        <div class="header-right">
+          <span class="dual-badge hidden" id="sourceDialectBadge"></span>
+          <span class="dual-badge hidden" id="targetDialectBadge"></span>
+          <span class="status-chip disconnected" id="statusChip">
+            <span class="status-dot"></span>
+            <span id="statusText">Disconnected</span>
+          </span>
+          <div class="safe-mode-toggle">
+            <span>Safe</span>
+            <div class="toggle-switch active" id="safeModeToggle" role="switch" aria-checked="true"
+              tabindex="0"></div>
+          </div>
+          <button class="theme-btn" id="themeToggle" aria-label="Toggle theme">🌙</button>
+        </div>
+      </header>
+
+      <!-- Page Area -->
+      <div class="page-area">
+
+        <!-- ===== MIGRATION PAGE (FIRST!) ===== -->
+        <section class="page active" id="page-migration">
+          <div class="connect-page-dual">
+            <div class="connect-header-hero">
+              <h2>🚀 AI-Powered Database Migration</h2>
+              <p>Select a pipeline, configure databases, review AI-generated migration plan, then execute. After migration, explore both databases with SQLAI.</p>
+            </div>
+
+            <!-- Step indicator — 5 steps -->
+            <div class="migration-steps" id="migrationSteps">
+              <div class="mig-step active" data-step="1">
+                <div class="mig-step-num">1</div>
+                <span class="mig-step-label">Select Pipeline</span>
+              </div>
+              <div class="mig-step-line"></div>
+              <div class="mig-step" data-step="2">
+                <div class="mig-step-num">2</div>
+                <span class="mig-step-label">Configure DBs</span>
+              </div>
+              <div class="mig-step-line"></div>
+              <div class="mig-step" data-step="3">
+                <div class="mig-step-num">3</div>
+                <span class="mig-step-label">Review Schema</span>
+              </div>
+              <div class="mig-step-line"></div>
+              <div class="mig-step" data-step="4">
+                <div class="mig-step-num">4</div>
+                <span class="mig-step-label">AI Plan</span>
+              </div>
+              <div class="mig-step-line"></div>
+              <div class="mig-step" data-step="5">
+                <div class="mig-step-num">5</div>
+                <span class="mig-step-label">Execute</span>
+              </div>
+            </div>
+
+            <!-- Step 1: Select Pipeline -->
+            <div id="migStep1" class="mig-panel">
+              <div class="card card-flat" style="padding:24px;">
+                <h3 style="margin-bottom:16px;font-weight:700;">Select Migration Pipeline</h3>
+                <div class="pipeline-grid" id="pipelineGrid">
+                  <div class="pipeline-card-skeleton">Loading pipelines...</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 2: Configure Databases -->
+            <div id="migStep2" class="mig-panel" style="display:none;">
+              <div class="card card-flat" style="padding:24px;">
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
+                  <h3 style="font-weight:700;">Configure Databases</h3>
+                  <button class="btn btn-ghost btn-sm" id="migBackTo1">← Back</button>
+                </div>
+
+                <div class="dual-connect-grid">
+                  <!-- Source -->
+                  <div class="card card-flat connect-card-dual source-card">
+                    <div class="db-card-header">
+                      <span class="db-role-badge source">SOURCE</span>
+                      <span class="db-type-indicator" id="migSourceType">—</span>
+                    </div>
+                    <div id="migSourceFields"></div>
+                    <button class="btn btn-ghost btn-sm" id="migTestSourceBtn" style="margin-top:12px;">🔍 Test Connection</button>
+                    <div id="migSourceTestResult" style="margin-top:8px;font-size:13px;"></div>
+                  </div>
+
+                  <div class="connect-arrow">
+                    <div class="arrow-line"></div>
+                    <div class="arrow-icon">→</div>
+                    <div class="arrow-line"></div>
+                  </div>
+
+                  <!-- Target -->
+                  <div class="card card-flat connect-card-dual target-card">
+                    <div class="db-card-header">
+                      <span class="db-role-badge target">DESTINATION</span>
+                      <span class="db-type-indicator" id="migTargetType">—</span>
+                    </div>
+                    <div id="migTargetFields"></div>
+                    <button class="btn btn-ghost btn-sm" id="migTestTargetBtn" style="margin-top:12px;">🔍 Test Connection</button>
+                    <div id="migTargetTestResult" style="margin-top:8px;font-size:13px;"></div>
+                  </div>
+                </div>
+
+                <button class="btn btn-primary btn-lg" id="migExtractSchemaBtn" style="width:100%;margin-top:20px;">
+                  📐 Extract Schema
+                </button>
+                <div class="connecting-animation" id="migSchemaLoading" aria-live="polite">
+                  <div class="spinner"></div>
+                  <span class="connecting-text">Extracting source schema…</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 3: Review Extracted Schema (NEW) -->
+            <div id="migStep3" class="mig-panel" style="display:none;">
+              <div class="card card-flat" style="padding:24px;">
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
+                  <h3 style="font-weight:700;">Review Extracted Schema</h3>
+                  <button class="btn btn-ghost btn-sm" id="migBackTo2">Back</button>
+                </div>
+                <p style="margin-bottom:16px;color:var(--text-secondary);font-size:13px;">
+                  Below is the schema extracted from your source database. Review tables, primary keys, foreign keys, and field types before generating the AI migration plan.
+                </p>
+                <div id="migSchemaDisplay" style="max-height:450px;overflow:auto;margin-bottom:20px;"></div>
+                <button class="btn btn-primary btn-lg" id="migGenPlanBtn" style="width:100%;">
+                  Generate AI Migration Plan
+                </button>
+                <div class="connecting-animation" id="migPlanLoading" aria-live="polite">
+                  <div class="spinner"></div>
+                  <span class="connecting-text">Generating AI migration plan...</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 4: Review AI Plan -->
+            <div id="migStep4" class="mig-panel" style="display:none;">
+              <div class="card card-flat" style="padding:24px;">
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
+                  <h3 style="font-weight:700;">AI Migration Plan</h3>
+                  <button class="btn btn-ghost btn-sm" id="migBackTo3">Back</button>
+                </div>
+                <p style="margin-bottom:12px;color:var(--text-secondary);font-size:13px;">Review the AI-generated migration plan below. You can provide feedback to refine it, then approve to start execution.</p>
+
+                <div class="sql-block" style="max-height:400px;overflow:auto;">
+                  <pre id="migPlanOutput" style="white-space:pre-wrap;word-break:break-word;"></pre>
+                </div>
+
+                <!-- HITL Feedback -->
+                <div style="margin-top:20px;">
+                  <label style="font-size:13px;font-weight:600;display:block;margin-bottom:6px;">💬 Feedback for AI (optional):</label>
+                  <div style="display:flex;gap:8px;">
+                    <textarea class="input-field" id="migFeedbackInput" rows="2"
+                      placeholder="e.g., 'Embed orders inside users' or 'Rename collection to user_data'…"
+                      style="flex:1;font-family:var(--font-mono);font-size:13px;"></textarea>
+                    <button class="btn btn-ghost" id="migUpdatePlanBtn" style="white-space:nowrap;">🔄 Refine Plan</button>
+                  </div>
+                </div>
+
+                <div style="display:flex;gap:12px;margin-top:20px;">
+                  <button class="btn btn-primary btn-lg" id="migApproveBtn" style="flex:1;">✅ Approve & Execute</button>
+                  <button class="btn btn-ghost btn-lg" id="migCancelBtn">Cancel</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 5: Migration Progress -->
+            <div id="migStep5" class="mig-panel" style="display:none;">
+              <div class="card card-flat" style="padding:24px;text-align:center;">
+                <div id="migProgressArea">
+                  <div class="migration-progress-anim">
+                    <div class="spinner" style="width:48px;height:48px;border-width:4px;margin:0 auto;"></div>
+                  </div>
+                  <h3 style="margin:16px 0 8px;">Migrating Data…</h3>
+                  <p id="migProgressText" style="color:var(--text-secondary);font-size:14px;">Starting…</p>
+                  <div class="perf-score-bar" style="margin-top:16px;">
+                    <div class="perf-score-fill medium" id="migProgressBar" style="width:0%;transition:width 0.5s ease;"></div>
+                  </div>
+                  <p id="migProgressDetail" style="margin-top:8px;font-size:12px;color:var(--text-tertiary);"></p>
+                </div>
+
+                <!-- Completion Result -->
+                <div id="migResultArea" style="display:none;">
+                  <div style="font-size:48px;margin-bottom:12px;" id="migResultIcon">✅</div>
+                  <h3 id="migResultTitle">Migration Completed!</h3>
+                  <div id="migResultDetails" style="margin-top:12px;text-align:left;"></div>
+
+                  <div style="margin-top:24px;padding:16px;background:var(--bg-tertiary);border-radius:var(--radius-lg);border:1px solid var(--border-primary);">
+                    <p style="font-weight:600;margin-bottom:8px;">🤖 Ready to explore both databases with AI?</p>
+                    <p style="font-size:13px;color:var(--text-secondary);margin-bottom:16px;">Your source and destination databases are now set up. Use the SQLAI dual-DB agent to query, compare, and analyze data.</p>
+                    <button class="btn btn-primary btn-lg" id="migLaunchSqlaiBtn" style="width:100%;">
+                      ⚡ Explore with SQLAI →
+                    </button>
+                  </div>
+
+                  <button class="btn btn-ghost" id="migNewMigrationBtn" style="margin-top:12px;">🔄 New Migration</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ===== CONNECT PAGE (for standalone SQLAI usage) ===== -->
+        <section class="page" id="page-connect">
+          <div class="connect-page-dual">
+            <div class="connect-header-hero">
+              <h2>🔗 Connect Source & Destination Databases</h2>
+              <p>Enter connection strings for both databases migrated via the QueryVista pipeline. Supports PostgreSQL, MySQL, MongoDB, and CouchDB.</p>
+            </div>
+
+            <div class="dual-connect-grid">
+              <!-- Source DB Card -->
+              <div class="card card-flat connect-card-dual source-card">
+                <div class="db-card-header">
+                  <span class="db-role-badge source">SOURCE</span>
+                  <span class="db-type-indicator" id="sourceTypeIndicator">—</span>
+                </div>
+                <div class="input-group">
+                  <label for="sourceUrlInput">Source Connection URL</label>
+                  <input type="text" class="input-field mono" id="sourceUrlInput"
+                    placeholder="postgresql://user:pass@host:5432/dbname" autocomplete="off" spellcheck="false">
+                </div>
+                <div class="input-group mt-md" id="sourceDbNameGroup" style="display:none;">
+                  <label for="sourceDbNameInput">Database Name (for NoSQL)</label>
+                  <input type="text" class="input-field" id="sourceDbNameInput"
+                    placeholder="e.g., mydb" autocomplete="off">
+                </div>
+                <div class="connection-presets">
+                  <button class="preset-btn" data-target="source" data-preset="postgresql://">PostgreSQL</button>
+                  <button class="preset-btn" data-target="source" data-preset="mysql://">MySQL</button>
+                  <button class="preset-btn" data-target="source" data-preset="mongodb+srv://">MongoDB</button>
+                  <button class="preset-btn" data-target="source" data-preset="http://admin:admin@localhost:5984">CouchDB</button>
+                </div>
+              </div>
+
+              <!-- Connector -->
+              <div class="connect-arrow">
+                <div class="arrow-line"></div>
+                <div class="arrow-icon">⇄</div>
+                <div class="arrow-line"></div>
+              </div>
+
+              <!-- Target DB Card -->
+              <div class="card card-flat connect-card-dual target-card">
+                <div class="db-card-header">
+                  <span class="db-role-badge target">DESTINATION</span>
+                  <span class="db-type-indicator" id="targetTypeIndicator">—</span>
+                </div>
+                <div class="input-group">
+                  <label for="targetUrlInput">Target Connection URL</label>
+                  <input type="text" class="input-field mono" id="targetUrlInput"
+                    placeholder="mongodb+srv://user:pass@cluster.mongodb.net/db" autocomplete="off" spellcheck="false">
+                </div>
+                <div class="input-group mt-md" id="targetDbNameGroup" style="display:none;">
+                  <label for="targetDbNameInput">Database Name (for NoSQL)</label>
+                  <input type="text" class="input-field" id="targetDbNameInput"
+                    placeholder="e.g., mydb" autocomplete="off">
+                </div>
+                <div class="connection-presets">
+                  <button class="preset-btn" data-target="target" data-preset="postgresql://">PostgreSQL</button>
+                  <button class="preset-btn" data-target="target" data-preset="mysql://">MySQL</button>
+                  <button class="preset-btn" data-target="target" data-preset="mongodb+srv://">MongoDB</button>
+                  <button class="preset-btn" data-target="target" data-preset="http://admin:admin@localhost:5984">CouchDB</button>
+                </div>
+              </div>
+            </div>
+
+            <button class="btn btn-primary btn-lg connect-dual-btn" id="connectDualBtn">
+              ⚡ Connect Both Databases
+            </button>
+            <div class="connecting-animation" id="connectingAnim" aria-live="polite">
+              <div class="spinner"></div>
+              <span class="connecting-text">Connecting & extracting schemas…</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- ===== SCHEMA EXPLORER PAGE ===== -->
+        <section class="page" id="page-schema">
+          <div class="page-header">
+            <h2>Schema Explorer — Dual View</h2>
+            <p>Browse and compare schemas between your source and destination databases. Differences are highlighted.</p>
+          </div>
+
+          <div id="schemaContent">
+            <div class="empty-state" id="schemaEmpty">
+              <div class="empty-icon">📊</div>
+              <h3>No Databases Connected</h3>
+              <p>Connect to both databases first to explore and compare schemas.</p>
+            </div>
+
+            <!-- Schema diff summary -->
+            <div class="schema-diff-summary hidden" id="schemaDiffSummary">
+              <div class="diff-stat">
+                <span class="diff-stat-icon source-only">⬅</span>
+                <span id="diffSourceOnly">0</span> only in source
+              </div>
+              <div class="diff-stat">
+                <span class="diff-stat-icon both">↔</span>
+                <span id="diffBoth">0</span> in both
+              </div>
+              <div class="diff-stat">
+                <span class="diff-stat-icon target-only">➡</span>
+                <span id="diffTargetOnly">0</span> only in target
+              </div>
+            </div>
+
+            <!-- Dual schema panels -->
+            <div class="dual-schema-grid hidden" id="dualSchemaGrid">
+              <!-- Source schema panel -->
+              <div class="card card-flat schema-panel">
+                <div class="schema-panel-header">
+                  <span class="db-role-badge source">SOURCE</span>
+                  <span class="schema-dialect-label" id="schemaSourceDialect">—</span>
+                </div>
+                <div class="schema-sidebar-list" id="sourceTablesList"></div>
+              </div>
+
+              <!-- Target schema panel -->
+              <div class="card card-flat schema-panel">
+                <div class="schema-panel-header">
+                  <span class="db-role-badge target">DESTINATION</span>
+                  <span class="schema-dialect-label" id="schemaTargetDialect">—</span>
+                </div>
+                <div class="schema-sidebar-list" id="targetTablesList"></div>
+              </div>
+            </div>
+
+            <!-- Detail view -->
+            <div class="card card-flat schema-detail-view hidden" id="schemaDetailView">
+              <div class="empty-state">
+                <div class="empty-icon">👆</div>
+                <h3>Select a Table or Collection</h3>
+                <p>Click any item from above to view its details and data preview.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ===== AI QUERY PAGE ===== -->
+        <section class="page" id="page-query">
+          <div class="page-header">
+            <h2>AI Query — Dual Database</h2>
+            <p>Write one natural language query. Get results from <strong>both</strong> databases simultaneously in their native query language.</p>
+          </div>
+
+          <div class="ai-query-input-area">
+            <div class="ai-input-wrapper">
+              <textarea class="ai-input" id="aiQueryInput"
+                placeholder="Ask anything about your data… e.g. 'Show me all users created in the last 30 days'"
+                rows="2"></textarea>
+              <button class="ai-send-btn" id="aiSendBtn" aria-label="Send query">▶</button>
+            </div>
+          </div>
+
+          <!-- AI Thinking -->
+          <div class="ai-thinking" id="aiThinking">
+            <div class="thinking-dots"><span></span><span></span><span></span></div>
+            <span class="thinking-text">AI is generating queries for both databases…</span>
+          </div>
+
+          <!-- Dual Results Area -->
+          <div class="hidden" id="dualResultsArea">
+            <div class="dual-results-grid">
+              <!-- Source Result -->
+              <div class="card card-flat result-panel" id="sourceResultPanel">
+                <div class="result-panel-header">
+                  <span class="db-role-badge source">SOURCE</span>
+                  <span class="result-ql-badge" id="sourceQLBadge">SQL</span>
+                  <button class="btn btn-ghost btn-sm copy-query-btn" data-target="sourceQueryOutput">📋 Copy</button>
+                </div>
+                <div class="sql-block">
+                  <pre id="sourceQueryOutput"></pre>
+                </div>
+                <div class="result-message" id="sourceResultMsg"></div>
+                <div class="result-error hidden" id="sourceResultError"></div>
+                <div class="data-table-wrapper" style="max-height:350px;overflow:auto;">
+                  <table class="data-table" id="sourceDataTable"></table>
+                </div>
+              </div>
+
+              <!-- Target Result -->
+              <div class="card card-flat result-panel" id="targetResultPanel">
+                <div class="result-panel-header">
+                  <span class="db-role-badge target">DESTINATION</span>
+                  <span class="result-ql-badge" id="targetQLBadge">MongoDB</span>
+                  <button class="btn btn-ghost btn-sm copy-query-btn" data-target="targetQueryOutput">📋 Copy</button>
+                </div>
+                <div class="sql-block">
+                  <pre id="targetQueryOutput"></pre>
+                </div>
+                <div class="result-message" id="targetResultMsg"></div>
+                <div class="result-error hidden" id="targetResultError"></div>
+                <div class="data-table-wrapper" style="max-height:350px;overflow:auto;">
+                  <table class="data-table" id="targetDataTable"></table>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Query History -->
+          <div class="history-panel" id="historyPanel">
+            <h4>🕐 Query History</h4>
+            <div class="history-list" id="historyList">
+              <div class="empty-state" style="padding:24px;">
+                <p style="font-size:13px;">No queries yet. Ask a question above!</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ===== AUTO DASHBOARD PAGE ===== -->
+        <section class="page" id="page-dashboard">
+          <div class="page-header">
+            <div class="flex items-center justify-between">
+              <div>
+                <h2>Auto Dashboard</h2>
+                <p>AI-generated insights from your SQL databases.</p>
+              </div>
+              <div class="dashboard-db-select">
+                <select class="input-field" id="dashboardDbSelect" style="width:auto;padding:8px 16px;">
+                  <option value="source">Source DB</option>
+                  <option value="target">Target DB</option>
+                </select>
+                <button class="btn btn-primary" id="genDashboardBtn">✨ Generate</button>
+              </div>
+            </div>
+          </div>
+          <div id="dashboardContent">
+            <div class="empty-state" id="dashboardEmpty">
+              <div class="empty-icon">📈</div>
+              <h3>No Dashboard Yet</h3>
+              <p>Connect to databases and click "Generate" to create AI-powered insights.</p>
+            </div>
+            <div class="hidden" id="dashboardSkeleton">
+              <div class="dashboard-grid">
+                <div class="card card-flat"><div class="skeleton skeleton-text" style="width:60%"></div><div class="skeleton skeleton-block" style="margin-top:12px"></div></div>
+                <div class="card card-flat"><div class="skeleton skeleton-text" style="width:50%"></div><div class="skeleton skeleton-block" style="margin-top:12px"></div></div>
+                <div class="card card-flat"><div class="skeleton skeleton-text" style="width:70%"></div><div class="skeleton skeleton-block" style="margin-top:12px"></div></div>
+              </div>
+            </div>
+            <div class="dashboard-grid hidden" id="dashboardGrid"></div>
+          </div>
+        </section>
+
+        <!-- ===== SQL OPTIMIZER PAGE ===== -->
+        <section class="page" id="page-optimizer">
+          <div class="page-header">
+            <h2>SQL Optimizer</h2>
+            <p>Paste a SQL query to get AI-powered optimization and performance scoring.</p>
+          </div>
+          <div class="card card-flat mb-lg">
+            <div class="flex items-center justify-between mb-md">
+              <h4 style="font-size:14px;font-weight:700;">Input Query</h4>
+              <div class="flex items-center gap-md">
+                <select class="input-field" id="optimizerDbSelect" style="width:auto;padding:6px 12px;font-size:12px;">
+                  <option value="source">Source DB</option>
+                  <option value="target">Target DB</option>
+                </select>
+                <button class="btn btn-primary" id="optimizeBtn">⚡ Optimize</button>
+              </div>
+            </div>
+            <textarea class="editor-area" id="optimizerInput"
+              placeholder="Paste your SQL query here...&#10;&#10;SELECT * FROM users WHERE created_at > '2024-01-01'"></textarea>
+          </div>
+          <div class="hidden" id="optimizerResults">
+            <div class="perf-score-container">
+              <div class="perf-score-label">
+                <span>Optimization Score</span>
+                <span id="perfScoreValue">0%</span>
+              </div>
+              <div class="perf-score-bar">
+                <div class="perf-score-fill" id="perfScoreFill" style="width:0%"></div>
+              </div>
+            </div>
+            <div class="optimizer-layout">
+              <div class="optimizer-panel">
+                <h4>📝 Original</h4>
+                <div class="sql-block"><pre id="origQueryDisplay"></pre></div>
+              </div>
+              <div class="optimizer-panel">
+                <h4>✨ Optimized
+                  <button class="btn btn-ghost btn-sm" id="copyOptimizedBtn" style="margin-left:auto;">📋 Copy</button>
+                </h4>
+                <div class="sql-block"><pre id="optQueryDisplay"></pre></div>
+              </div>
+            </div>
+            <div class="explanation-panel">
+              <h4>💡 Analysis</h4>
+              <div class="explanation-content" id="explanationContent"></div>
+            </div>
+          </div>
+          <div class="hidden" id="optimizerSkeleton">
+            <div class="perf-score-container">
+              <div class="skeleton skeleton-text" style="width:30%"></div>
+              <div class="skeleton" style="height:8px;margin-top:8px;"></div>
+            </div>
+            <div class="optimizer-layout mt-lg">
+              <div class="card card-flat"><div class="skeleton skeleton-block"></div></div>
+              <div class="card card-flat"><div class="skeleton skeleton-block"></div></div>
+            </div>
+          </div>
+        </section>
+
+      </div> <!-- /page-area -->
+    </main>
+  </div> <!-- /app-layout -->
+
+  <!-- Chart Modal -->
+  <div class="modal-overlay" id="chartModal" aria-hidden="true" role="dialog">
+    <div class="modal" style="max-width:80vw;">
+      <div class="modal-header">
+        <h3 id="chartModalTitle">Chart</h3>
+        <div class="modal-actions">
+          <button class="btn btn-ghost btn-sm" id="chartNewTabBtn">↗ New Tab</button>
+          <button class="modal-close" id="chartModalClose">✕</button>
+        </div>
+      </div>
+      <div id="chartModalBody" style="text-align:center;">
+        <img id="chartModalImg" src="" alt="Chart" style="max-width:100%;border-radius:var(--radius-md);">
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Container -->
+  <div class="toast-container" id="toastContainer" aria-live="polite"></div>
+
+  <script src="/static/app.js"></script>
+</body>
+
+</html>
