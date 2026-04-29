@@ -17,6 +17,7 @@ from .base import BasePipeline, extract_couch_schema, safe_json
 _MAX_SAFE_VARCHAR = 16000
 
 
+
 class CouchDBToMySQLPipeline(BasePipeline):
     source_type = "couchdb"
     target_type = "mysql"
