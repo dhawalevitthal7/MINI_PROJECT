@@ -5,6 +5,7 @@ Features: Auto MySQL version detection, JSON column support, VARCHAR safety guar
           REPLACE/APPEND/UPSERT modes.
 """
 
+
 import json
 import datetime
 from typing import Any, Dict
